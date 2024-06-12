@@ -1,21 +1,14 @@
+import streamlit as st
+
 def sum_of_digits(number):
-    # Ensure the number is positive
-    number = abs(number)
+    return sum(int(digit) for digit in str(number))
 
-    # Convert the number to a string to easily iterate over each digit
-    number_str = str(number)
+st.title("Sum of Digits Calculator")
 
-    # Initialize the sum
-    digit_sum = 0
+# Input number from user
+number = st.number_input("Enter a number", min_value=0, step=1, value=0)
 
-    # Iterate over each character in the string representation of the number
-    for digit in number_str:
-        # Convert the character to an integer and add it to the sum
-        digit_sum += int(digit)
-
-    return digit_sum
-
-# Example usage
-number = 464484848
-result = sum_of_digits(number)
-print(f"The sum of all digits in the number {number} is: {result}")
+# Calculate the sum of digits
+if st.button("Calculate"):
+    result = sum_of_digits(number)
+    st.write(f"The sum of the digits of {number} is: {result}")
